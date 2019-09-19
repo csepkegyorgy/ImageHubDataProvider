@@ -1,9 +1,11 @@
-﻿namespace ImageHubBackend
+﻿namespace LogMeOut.ImageHub.DataProvider
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using LogMeOut.ImageHub.BusinessLogic.Logic;
+    using LogMeOut.ImageHub.Interfaces.Logic;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            AddDependencies(services);
 
             services.AddCors(options =>
             {
@@ -52,6 +56,11 @@
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void AddDependencies(IServiceCollection services)
+        {
+            services.AddScoped<IFtpDownloaderLogic, FtpDownloaderLogic>();
         }
     }
 }

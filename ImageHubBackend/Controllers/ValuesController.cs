@@ -1,4 +1,4 @@
-﻿namespace ImageHubBackend.Controllers
+﻿namespace LogMeOut.ImageHub.DataProvider.Controllers
 {
     using System;
     using System.Collections.Generic;
