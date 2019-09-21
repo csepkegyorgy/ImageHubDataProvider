@@ -4,12 +4,12 @@
 
     public class InvalidFtpFileAccessException : Exception
     {
-        public Exception OriginalException { get; set; }
+        public string FileName { get; set; }
 
-        public InvalidFtpFileAccessException(Exception exception)
-            : base($"The provided information was invalid to access the resource.")
+        public InvalidFtpFileAccessException(string fileName)
+            : base($"No resource exists corresponding the provided resource identifier [{fileName}].")
         {
-            this.OriginalException = exception;
+            this.FileName = fileName;
         }
     }
 }

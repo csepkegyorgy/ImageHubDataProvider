@@ -50,15 +50,14 @@
             {
                 if (e is WebException)
                 {
-                    HandleFatalWebException(e as WebException);
+                    HandleFatalWebException(e as WebException, request);
                 }
             }
 
             return new FtpDownloadResponse<byte[]>()
             {
                 FileContent = fileContent,
-                FileName = request.FileName,
-                SuccessfulRequest = true
+                FileName = request.FileName
             };
         }
 
@@ -100,12 +99,12 @@
             return stream;
         }
 
-        private void HandleFatalWebException(WebException e)
+        private void HandleFatalWebException(WebException e, FtpDownloadRequest request)
         {
             switch ((e.Response as FtpWebResponse).StatusCode)
             {
                 case FtpStatusCode.ActionNotTakenFileUnavailable:
-                    throw new InvalidFtpFileAccessException(e);
+                    throw new InvalidFtpFileAccessException(request.FileName);
                 default:
                     throw new UnknownException(e);
             }

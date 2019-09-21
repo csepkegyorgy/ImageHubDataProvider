@@ -7,7 +7,5 @@
         public string FileExtension { get; set; }
 
         public T FileContent { get; set; }
-
-        public bool SuccessfulRequest { get; set; }
     }
 }
