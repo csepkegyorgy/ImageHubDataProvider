@@ -6,8 +6,6 @@
     {
         public string FileName { get; set; }
 
-        public string FileExtension { get; set; }
-
         public FtpConnectionInformation FtpInfo { get; set; }
     }
 }

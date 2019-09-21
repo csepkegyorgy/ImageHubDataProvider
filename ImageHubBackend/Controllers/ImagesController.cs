@@ -4,6 +4,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using LogMeOut.ImageHub.Interfaces;
     using LogMeOut.ImageHub.Interfaces.Logic;
     using LogMeOut.ImageHub.Interfaces.Logic.TransportObjects;
     using LogMeOut.ImageHub.Interfaces.Util;
@@ -28,8 +29,7 @@
         {
             FtpDownloadRequest request = new FtpDownloadRequest()
             {
-                FileName = "testimage",
-                FileExtension = "jpg",
+                FileName = id,
                 FtpInfo = AppConfig.GetFtpConnectionInformation()
             };
             FtpDownloadResponse<byte[]> response = FtpDownloaderLogic.DownloadImage(request);
