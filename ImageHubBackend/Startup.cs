@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using LogMeOut.ImageHub.BusinessLogic.Logic;
+    using LogMeOut.ImageHub.BusinessLogic.Query;
     using LogMeOut.ImageHub.Interfaces.Logic;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -61,6 +62,7 @@
         private void AddDependencies(IServiceCollection services)
         {
             services.AddScoped<IFtpDownloaderLogic, FtpDownloaderLogic>();
+            services.AddScoped<IPostQueryLogic, PostQueryLogic>();
         }
     }
 }
