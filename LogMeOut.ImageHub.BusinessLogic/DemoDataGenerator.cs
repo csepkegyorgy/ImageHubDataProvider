@@ -144,10 +144,10 @@
 
                 for (int i = 0; i < generatePosts; i++)
                 {
-                    DateTime randomDate = DateTime.Now;
-                    randomDate.AddYears(Random.Next(-6, 0));
-                    randomDate.AddMonths(Random.Next(0, 12));
-                    randomDate.AddDays(Random.Next(0, 30));
+                    DateTime randomDate = DateTime.Now
+                        .AddYears(Random.Next(-6, 0))
+                        .AddMonths(Random.Next(0, 12))
+                        .AddDays(Random.Next(0, 30));
 
                     posts.Add(new PostEntity()
                     {

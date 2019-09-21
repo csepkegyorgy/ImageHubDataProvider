@@ -40,7 +40,20 @@
                     do
                     {
                         bytes = stream.Read(buffer, 0, buffer.Length);
-                        fileContentList.AddRange(buffer);
+                        if (bytes == buffer.Length)
+                        {
+                            fileContentList.AddRange(buffer);
+                        }
+                        else
+                        {
+                            byte[] tempBuffer = new byte[bytes];
+                            for (int i = 0; i < bytes; i++)
+                            {
+                                tempBuffer[i] = buffer[i];
+                            }
+                            fileContentList.AddRange(tempBuffer);
+                        }
+                        
                     } while (bytes != 0);
 
                     fileContent = fileContentList.ToArray();
