@@ -8,6 +8,8 @@
 
         public string FileExtension { get; set; }
 
+        public string Folder { get; set; }
+
         public T FileContent { get; set; }
 
         public FtpConnectionInformation FtpInfo { get; set; }

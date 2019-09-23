@@ -5,11 +5,20 @@
     using System.IO;
     using System.Net;
 
-    class FtpUploaderLogic : IFtpUploaderLogic
+    public class FtpUploaderLogic : IFtpUploaderLogic
     {
         public FtpUploadResponse UploadImage(FtpUploadRequest<byte[]> request)
         {
-            string uri = $"ftp://{request.FtpInfo.Host}:{request.FtpInfo.Port}/{request.FileName}.{request.FileExtension}";
+            string resultFileName = request.FileName + "." + request.FileExtension;
+            string uri = $"ftp://{request.FtpInfo.Host}:{request.FtpInfo.Port}/";
+            if (string.IsNullOrWhiteSpace(request.Folder))
+            {
+                uri += resultFileName;
+            }
+            else
+            {
+                uri += $"{request.Folder}/{resultFileName}";
+            }
 
             FtpWebRequest ftpWebRequest = (FtpWebRequest)FtpWebRequest.Create(uri);
             ftpWebRequest.Credentials = new NetworkCredential(request.FtpInfo.UserName, request.FtpInfo.Password);
@@ -25,7 +34,7 @@
 
             return new FtpUploadResponse()
             {
-                SuccessfulRequest = true
+                FileName = resultFileName
             };
         }
 

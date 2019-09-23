@@ -4,8 +4,6 @@
     {
         public string FileName { get; set; }
 
-        public string FileExtension { get; set; }
-
         public T FileContent { get; set; }
     }
 }

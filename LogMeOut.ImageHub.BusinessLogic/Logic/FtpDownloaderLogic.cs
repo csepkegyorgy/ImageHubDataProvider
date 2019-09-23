@@ -19,7 +19,15 @@
                 throw new InvalidFtpConnectionInformationException(request.FtpInfo);
             }
 
-            string uri = $"ftp://{request.FtpInfo.Host}:{request.FtpInfo.Port}/{request.FileName}";
+            string uri = $"ftp://{request.FtpInfo.Host}:{request.FtpInfo.Port}/";
+            if (string.IsNullOrWhiteSpace(request.Folder))
+            {
+                uri += request.FileName;
+            }
+            else
+            {
+                uri += $"{request.Folder}/{request.FileName}";
+            }
 
             FtpWebRequest ftpWebRequest = (FtpWebRequest)FtpWebRequest.Create(uri);
             ftpWebRequest.Credentials = new NetworkCredential(request.FtpInfo.UserName, request.FtpInfo.Password);

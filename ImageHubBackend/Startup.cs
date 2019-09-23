@@ -35,7 +35,7 @@
             services.AddCors(options =>
             {
                 options.AddPolicy("MyCorsPolicy", builder => builder
-                    .WithOrigins("http://localhost:3000")
+                    .WithOrigins("http://localhost:3000", "http://192.168.0.100:3000")
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
@@ -62,6 +62,7 @@
         private void AddDependencies(IServiceCollection services)
         {
             services.AddScoped<IFtpDownloaderLogic, FtpDownloaderLogic>();
+            services.AddScoped<IFtpUploaderLogic, FtpUploaderLogic>();
             services.AddScoped<IPostQueryLogic, PostQueryLogic>();
         }
     }
