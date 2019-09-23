@@ -11,11 +11,14 @@
         private static int generateUserCount = 20;
         private static int generatePostPerUserCountMin = 3;
         private static int generatePostPerUserCountMax = 8;
+        private static int generateCommentPerPostCountMin = 0;
+        private static int generateCommentPerPostCountMax = 4;
 
         static DemoDataGenerator()
         {
             GenerateDemoUsers();
             GenerateDemoPosts();
+            GenerateDemoComments();
         }
 
         private static Random Random = new Random();
@@ -112,9 +115,46 @@
             "nude #nude",
             "My mom always said that life was like a box of chocolates"
         };
+        private static List<string> CommentTexts = new List<string>()
+        {
+            "Come on, that's not appropriate",
+            "Livin the life",
+            "#litaf",
+            "are you making fun of me?",
+            "You gone full jerry springer",
+            "Thats bollocks",
+            "Stop",
+            "Reported",
+            "free shipping 5$ off ur first order visit my page",
+            "check out these free healthy snacks that are affordable",
+            ":)) kys",
+            "8===D",
+            "happy sunday babes",
+            "love ur outfit",
+            "love this dresss, girly ;)))))))))))))))))))))))))))))))))))))))))))",
+            "every damn day",
+            "Such a beautiful detail",
+            "please visit my hub we should follow each other",
+            "omg amazing, like for real",
+            "hubtastic!",
+            "#brokebicchprobs",
+            "so me",
+            "welcome to greece",
+            "Welcome to romania",
+            "Hahaha",
+            "u ugly",
+            "ur art is my everyday inspiration",
+            "thank you",
+            "what is this?",
+            "love you to the moon xxx",
+            "still cant believe this just happened",
+            "huge nostalgia",
+            "u dont play u slayy"
+        };
 
         private static List<UserEntity> users = new List<UserEntity>();
         private static List<PostEntity> posts = new List<PostEntity>();
+        private static List<CommentEntity> comments = new List<CommentEntity>();
         public static List<PostEntity> Posts
         {
             get { return posts.ToList(); }
@@ -122,6 +162,10 @@
         public static List<UserEntity> Users
         {
             get { return users.ToList(); }
+        }
+        public static List<CommentEntity> Comments
+        {
+            get { return comments.ToList(); }
         }
 
         private static void GenerateDemoUsers()
@@ -165,6 +209,31 @@
             }
         }
 
-        
+        private static void GenerateDemoComments()
+        {
+            foreach (PostEntity item in posts)
+            {
+                int generateComments = Random.Next(generateCommentPerPostCountMin, generateCommentPerPostCountMax + 1);
+
+                for (int i = 0; i < generateComments; i++)
+                {
+                    DateTime randomDate = item.Date
+                        .AddHours(Random.Next(0, 3))
+                        .AddMinutes(Random.Next(0, 60))
+                        .AddSeconds(Random.Next(0, 60));
+
+                    UserEntity commenter = users.GetRandomItem(Random);
+                    comments.Add(new CommentEntity()
+                    {
+                        PostId = item.PostId,
+                        CommenterId = commenter.UserId,
+                        CommenterName = commenter.Name,
+                        CommenterProfileIconId = commenter.ProfileImageId,
+                        Date = randomDate,
+                        Text = CommentTexts.GetRandomItem(Random)
+                    });
+                }
+            }
+        }
     }
 }

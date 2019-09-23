@@ -15,6 +15,5 @@
         public string PosterName { get; set; }
         public Guid PosterId { get; set; }
         public string PosterProfileIconId { get; set; }
-
     }
 }
