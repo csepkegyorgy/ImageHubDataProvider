@@ -56,9 +56,9 @@
 
         [EnableCors("MyCorsPolicy")]
         [HttpPost]
-        public IActionResult UploadImage([FromForm] IFormFile file, [FromForm] Guid userId, [FromForm] string folder)
+        public IActionResult UploadImage([FromForm] IFormFile file, [FromForm] Guid userId, [FromForm] string type)
         {
-            IEnumerable<string> errors = CheckFileUploadRequestForErrors(file, userId, folder);
+            IEnumerable<string> errors = CheckFileUploadRequestForErrors(file, userId, type);
             if (errors.Any())
             {
                 return new JsonResult(new { success = false, errors = errors });
@@ -68,7 +68,7 @@
             {
                 FileContent = ReadFileStreamForFileContent(file.OpenReadStream()),
                 FileName = GetFileNameFromUserAndDateForUploadedImage(userId),
-                Folder = folder,
+                Folder = ImageTypeFolderResolver[type],
                 FileExtension = "jpg",
                 FtpInfo = AppConfig.GetFtpConnectionInformation()
             };
@@ -137,7 +137,7 @@
             return result.ToArray();
         }
 
-        private IEnumerable<string> CheckFileUploadRequestForErrors(IFormFile file, Guid userId, string folder)
+        private IEnumerable<string> CheckFileUploadRequestForErrors(IFormFile file, Guid userId, string type)
         {
             List<string> errors = new List<string>();
 
@@ -149,9 +149,16 @@
             {
                 errors.Add("Invalid or no userId provided.");
             }
-            if (string.IsNullOrWhiteSpace(folder))
+            if (string.IsNullOrWhiteSpace(type))
             {
-                errors.Add("Invalid or no folder provided.");
+                errors.Add("No type provided.");
+            }
+            else
+            {
+                if (type != "post" && type != "profile")
+                {
+                    errors.Add("Invalid type provided. Uploading to the root folder of the ftp server is only possible through manual actions.");
+                }
             }
 
             return errors;
