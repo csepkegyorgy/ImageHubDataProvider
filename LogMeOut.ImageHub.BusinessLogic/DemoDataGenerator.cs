@@ -168,6 +168,11 @@
             get { return comments.ToList(); }
         }
 
+        public static void AddUser(UserEntity user)
+        {
+            users.Add(user);
+        }
+
         private static void GenerateDemoUsers()
         {
             for (int i = 0; i < generateUserCount; i++)
