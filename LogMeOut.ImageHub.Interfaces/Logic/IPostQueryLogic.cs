@@ -4,6 +4,8 @@
 
     public interface IPostQueryLogic
     {
-        GetUserFeedBatchResponse GetUserFeedBatch(GetUserFeedBatchRequest request);
+        PostsBatchResponse GetUserFeedBatch(PostsBatchRequest request);
+
+        PostsBatchResponse LoadUserPosts(PostsBatchRequest request);
     }
 }

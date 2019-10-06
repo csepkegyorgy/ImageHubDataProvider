@@ -3,7 +3,7 @@
     using LogMeOut.ImageHub.Interfaces.Entity;
     using System.Collections.Generic;
 
-    public class GetUserFeedBatchResponse
+    public class PostsBatchResponse
     {
         public IEnumerable<PostEntity> Posts { get; set; }
 

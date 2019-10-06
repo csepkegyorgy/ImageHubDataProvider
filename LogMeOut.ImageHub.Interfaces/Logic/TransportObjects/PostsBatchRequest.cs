@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class GetUserFeedBatchRequest
+    public class PostsBatchRequest
     {
         public Guid UserId { get; set; }
 

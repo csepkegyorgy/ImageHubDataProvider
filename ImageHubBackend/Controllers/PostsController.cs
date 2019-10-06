@@ -26,20 +26,32 @@
         }
 
         [EnableCors("MyCorsPolicy")]
-        [HttpGet("getfeed")]
-        public IActionResult Get(Guid userId, int take, Guid? lastPostId)
+        [HttpGet("listposts")]
+        public IActionResult Get(Guid userId, int take, string type, Guid? lastPostId)
         {
-            GetUserFeedBatchRequest request = new GetUserFeedBatchRequest()
+            PostsBatchRequest request = new PostsBatchRequest()
             {
                 UserId = userId,
                 Take = take,
                 LastPostId = lastPostId
             };
 
-            GetUserFeedBatchResponse response = null;
+            PostsBatchResponse response = null;
             try
             {
-                response = PostQueryLogic.GetUserFeedBatch(request);
+                if (type == "userfeed")
+                {
+                    response = PostQueryLogic.GetUserFeedBatch(request);
+                }
+                else if (type == "usersite")
+                {
+                    response = PostQueryLogic.LoadUserPosts(request);
+                }
+                else
+                {
+                    string errorText = $"Invalid request type";
+                    return new JsonResult(new { error = errorText, userId = userId });
+                }
                 return new JsonResult(response);
             }
             catch (Exception)
