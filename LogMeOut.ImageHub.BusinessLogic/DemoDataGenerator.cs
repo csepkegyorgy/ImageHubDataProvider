@@ -95,7 +95,8 @@
             "wastedhoe.jpg",
             "weirdpaintingclass.jpg",
             "piranhaplant.jpg",
-            "testimage.jpg"
+            "testimage.jpg",
+            "cicike.jpg"
         };
         private static List<string> PostDescriptions = new List<string>()
         {
@@ -173,6 +174,11 @@
             users.Add(user);
         }
 
+        public static void AddPost(PostEntity post)
+        {
+            posts.Add(post);
+        }
+
         private static void GenerateDemoUsers()
         {
             for (int i = 0; i < generateUserCount; i++)
@@ -207,13 +213,12 @@
                         PostDescription = PostDescriptions.GetRandomItem(Random),
                         PosterId = item.UserId,
                         PosterName = item.Name,
-                        PosterProfileIconId = item.ProfileImageId,
+                        PosterProfileIconId = "thisdoggo.jpg",//item.ProfileImageId,
                         PostId = Guid.NewGuid()
                     });
                 }
             }
         }
-
         private static void GenerateDemoComments()
         {
             foreach (PostEntity item in posts)

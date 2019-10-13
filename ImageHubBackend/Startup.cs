@@ -65,6 +65,7 @@
             services.AddScoped<IFtpUploaderLogic, FtpUploaderLogic>();
             services.AddScoped<IPostQueryLogic, PostQueryLogic>();
             services.AddScoped<IAuthenticationLogic, AuthenticationLogic>();
+            services.AddScoped<IPostSubmitterLogic, PostSubmitterLogic>();
         }
     }
 }

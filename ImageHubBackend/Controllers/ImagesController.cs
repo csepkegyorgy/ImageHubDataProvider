@@ -77,7 +77,7 @@
             try
             {
                 response = FtpUploaderLogic.UploadImage(request);
-                return new JsonResult(new { success = true, filename = response.FileName });
+                return new JsonResult(new { success = true, fileName = response.FileName });
             }
             catch (Exception e)
             {

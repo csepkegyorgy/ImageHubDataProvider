@@ -18,11 +18,13 @@
     public class PostsController : ControllerBase
     {
         private IPostQueryLogic PostQueryLogic;
-        
-        public PostsController(IPostQueryLogic postQueryLogic)
+        private IPostSubmitterLogic PostSubmitterLogic;
+
+        public PostsController(IPostQueryLogic postQueryLogic, IPostSubmitterLogic postSubmitterLogic)
             : base()
         {
             this.PostQueryLogic = postQueryLogic;
+            this.PostSubmitterLogic = postSubmitterLogic;
         }
 
         [EnableCors("MyCorsPolicy")]
@@ -58,6 +60,27 @@
             {
                 string errorText = $"Internal server error";
                 return new JsonResult(new { error = errorText, userId = userId });
+            }
+        }
+
+        [EnableCors("MyCorsPolicy")]
+        [HttpPost]
+        public IActionResult Post([FromForm] Guid userId, [FromForm] string imageId, [FromForm] string description)
+        {
+            SubmitPostResponse response = null;
+            try
+            {
+                response = this.PostSubmitterLogic.SubmitPost(new SubmitPostRequest()
+                {
+                    UserId = userId,
+                    Description = description,
+                    ImageId = imageId
+                });
+                return new JsonResult(new { success = true });
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { success = false, errors = new string[] { "lazy error text" } });
             }
         }
     }
