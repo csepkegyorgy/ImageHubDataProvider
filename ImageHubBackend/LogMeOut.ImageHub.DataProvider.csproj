@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LogMeOut.ImageHub.BusinessLogic\LogMeOut.ImageHub.BusinessLogic.csproj" />
     <ProjectReference Include="..\LogMeOut.ImageHub.Interfaces\LogMeOut.ImageHub.Interfaces.csproj" />
+    <ProjectReference Include="..\LogMeOut.ImageHub.Repository\LogMeOut.ImageHub.Repository.csproj" />
   </ItemGroup>
 
 </Project>

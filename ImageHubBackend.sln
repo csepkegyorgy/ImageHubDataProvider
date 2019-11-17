@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogMeOut.ImageHub.DataProvider", "ImageHubBackend\LogMeOut.ImageHub.DataProvider.csproj", "{FCAAC6C6-893F-4152-B4DD-9D04F51CFF3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMeOut.ImageHub.Interfaces", "LogMeOut.ImageHub.Interfaces\LogMeOut.ImageHub.Interfaces.csproj", "{052EA812-676A-4180-BB76-D48B346FBE4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogMeOut.ImageHub.Interfaces", "LogMeOut.ImageHub.Interfaces\LogMeOut.ImageHub.Interfaces.csproj", "{052EA812-676A-4180-BB76-D48B346FBE4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMeOut.ImageHub.BusinessLogic", "LogMeOut.ImageHub.BusinessLogic\LogMeOut.ImageHub.BusinessLogic.csproj", "{A6E89D19-EB0D-445C-B76D-D8292A0EA15E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogMeOut.ImageHub.BusinessLogic", "LogMeOut.ImageHub.BusinessLogic\LogMeOut.ImageHub.BusinessLogic.csproj", "{A6E89D19-EB0D-445C-B76D-D8292A0EA15E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMeOut.ImageHub.Repository", "LogMeOut.ImageHub.Repository\LogMeOut.ImageHub.Repository.csproj", "{748D5C97-F039-422D-9BD6-DBA1A47090D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A6E89D19-EB0D-445C-B76D-D8292A0EA15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E89D19-EB0D-445C-B76D-D8292A0EA15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E89D19-EB0D-445C-B76D-D8292A0EA15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{748D5C97-F039-422D-9BD6-DBA1A47090D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{748D5C97-F039-422D-9BD6-DBA1A47090D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{748D5C97-F039-422D-9BD6-DBA1A47090D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{748D5C97-F039-422D-9BD6-DBA1A47090D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
