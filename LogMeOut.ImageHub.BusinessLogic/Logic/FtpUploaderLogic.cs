@@ -1,12 +1,18 @@
 ﻿namespace LogMeOut.ImageHub.BusinessLogic.Logic
 {
+    using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
     using LogMeOut.ImageHub.Interfaces.Logic;
     using LogMeOut.ImageHub.Interfaces.Logic.TransportObjects;
     using System.IO;
     using System.Net;
 
-    public class FtpUploaderLogic : IFtpUploaderLogic
+    public class FtpUploaderLogic : BaseLogic, IFtpUploaderLogic
     {
+        public FtpUploaderLogic(IBaseLogicDependency baseLogicDependency)
+            : base(baseLogicDependency)
+        {
+        }
+
         public FtpUploadResponse UploadImage(FtpUploadRequest<byte[]> request)
         {
             string resultFileName = request.FileName + "." + request.FileExtension;
@@ -20,17 +26,7 @@
                 uri += $"{request.Folder}/{resultFileName}";
             }
 
-            FtpWebRequest ftpWebRequest = (FtpWebRequest)FtpWebRequest.Create(uri);
-            ftpWebRequest.Credentials = new NetworkCredential(request.FtpInfo.UserName, request.FtpInfo.Password);
-            ftpWebRequest.KeepAlive = false;
-            ftpWebRequest.UseBinary = true;
-            ftpWebRequest.EnableSsl = request.FtpInfo.EnableSsl;
-            ftpWebRequest.Method = WebRequestMethods.Ftp.UploadFile;
-
-            using (Stream stream = ftpWebRequest.GetRequestStream())
-            {
-                stream.Write(request.FileContent, 0, request.FileContent.Length);
-            }
+            base.UploadImage(request.FileContent, uri);
 
             return new FtpUploadResponse()
             {

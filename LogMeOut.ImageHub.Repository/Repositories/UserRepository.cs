@@ -14,6 +14,12 @@
             this.imageHubRepository = imageHubRepository;
         }
 
+        public void AddUser(User user)
+        {
+            Context.User.Add(user);
+            Context.SaveChanges();
+        }
+
         public User GetUserByFacebookUserId(string facebookUserId)
         {
             return Context.User.SingleOrDefault(x => x.FacebookUserId == facebookUserId);

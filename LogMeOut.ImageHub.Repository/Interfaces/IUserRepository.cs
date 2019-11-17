@@ -5,5 +5,7 @@
     public interface IUserRepository
     {
         User GetUserByFacebookUserId(string facebookUserId);
+
+        void AddUser(User user);
     }
 }

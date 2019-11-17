@@ -27,13 +27,14 @@
 
         [EnableCors("MyCorsPolicy")]
         [HttpGet("loginuser")]
-        public IActionResult Get(string facebookUserId, string email, string name)
+        public IActionResult Get(string facebookUserId, string email, string name, string facebookImageUrl)
         {
             AuthenticateUserRequest request = new AuthenticateUserRequest()
             {
                 FacebookUserId = facebookUserId,
                 Email = email,
-                UserName = name
+                UserName = name,
+                ProfilePictureUrl = facebookImageUrl
             };
 
             try

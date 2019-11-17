@@ -43,7 +43,8 @@
 
         public void Dispose()
         {
-            DbContextLazy.Value.Dispose();
+            if(DbContextLazy != null && DbContextLazy.Value != null)
+                DbContextLazy.Value.Dispose();
             DbContextLazy = null;
         }
 
