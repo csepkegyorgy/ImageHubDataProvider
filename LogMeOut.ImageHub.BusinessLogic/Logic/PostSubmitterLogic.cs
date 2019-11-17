@@ -11,9 +11,15 @@
     using System.Threading;
     using System.Linq;
     using LogMeOut.ImageHub.Interfaces.Entity;
+    using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
 
-    public class PostSubmitterLogic : IPostSubmitterLogic
+    public class PostSubmitterLogic : BaseLogic, IPostSubmitterLogic
     {
+        public PostSubmitterLogic(IBaseLogicDependency baseLogicDependency)
+            : base(baseLogicDependency)
+        {
+        }
+
         public SubmitPostResponse SubmitPost(SubmitPostRequest request)
         {
             UserEntity user = DemoDataGenerator.Users.SingleOrDefault(u => u.UserId == request.UserId);

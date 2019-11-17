@@ -1,39 +1,38 @@
 ﻿namespace LogMeOut.ImageHub.BusinessLogic.Logic
 {
-    using LogMeOut.ImageHub.Interfaces;
-    using LogMeOut.ImageHub.Interfaces.Exceptions;
     using LogMeOut.ImageHub.Interfaces.Logic;
     using LogMeOut.ImageHub.Interfaces.Logic.TransportObjects;
     using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Net;
-    using System.Threading;
-    using System.Linq;
+    using LogMeOut.ImageHub.Repository.Models;
+    using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
 
-    public class AuthenticationLogic : IAuthenticationLogic
+    public class AuthenticationLogic : BaseLogic, IAuthenticationLogic
     {
+        public AuthenticationLogic(IBaseLogicDependency baseLogicDependency)
+            : base(baseLogicDependency)
+        {
+        }
+
         public AuthenticateUserResponse AuthenticateUser(AuthenticateUserRequest request)
         {
-            Interfaces.Entity.UserEntity user = DemoDataGenerator.Users.SingleOrDefault(u => u.FacebookUserId == request.FacebookUserId);
+            User user = Repository.UserRepository.GetUserByFacebookUserId(request.FacebookUserId);
 
             if (user == null)
             {
-                DemoDataGenerator.AddUser(new Interfaces.Entity.UserEntity()
+                user = new User()
                 {
-                    Email = request.Email,
+                    ProfileImageId = "default.jpg",
+                    Id = Guid.NewGuid(),
                     FacebookUserId = request.FacebookUserId,
-                    Name = request.UserName,
-                    UserId = Guid.NewGuid(),
-                    ProfileImageId = "testimage.jpg"
-                });
-
-                user = DemoDataGenerator.Users.Single(u => u.FacebookUserId == request.FacebookUserId);
+                    Email = request.Email,
+                    Name = request.UserName
+                };
+                Repository.SaveChanges();
             }
 
             return new AuthenticateUserResponse()
             {
-                UserId = user.UserId,
+                UserId = user.Id,
                 ProfileIconId = user.ProfileImageId,
                 Email = user.Email,
                 FacebookUserId = user.FacebookUserId,

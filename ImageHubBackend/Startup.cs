@@ -5,8 +5,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using LogMeOut.ImageHub.BusinessLogic.Logic;
+    using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
     using LogMeOut.ImageHub.BusinessLogic.Query;
     using LogMeOut.ImageHub.Interfaces.Logic;
+    using LogMeOut.ImageHub.Interfaces.Repository;
+    using LogMeOut.ImageHub.Repository.Repositories;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -61,6 +64,9 @@
 
         private void AddDependencies(IServiceCollection services)
         {
+            services.AddScoped<IImageHubRepository, ImageHubRepository>();
+            services.AddScoped<IBaseLogicDependency, BaseLogicDependency>();
+
             services.AddScoped<IFtpDownloaderLogic, FtpDownloaderLogic>();
             services.AddScoped<IFtpUploaderLogic, FtpUploaderLogic>();
             services.AddScoped<IPostQueryLogic, PostQueryLogic>();

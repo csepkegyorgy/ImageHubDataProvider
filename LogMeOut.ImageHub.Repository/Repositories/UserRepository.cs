@@ -1,6 +1,8 @@
 ﻿namespace LogMeOut.ImageHub.Repository.Repositories
 {
     using LogMeOut.ImageHub.Interfaces.Repository;
+    using LogMeOut.ImageHub.Repository.Models;
+    using System.Linq;
 
     public class UserRepository : BaseRepository, IUserRepository
     {
@@ -10,6 +12,11 @@
             : base(imageHubRepository)
         {
             this.imageHubRepository = imageHubRepository;
+        }
+
+        public User GetUserByFacebookUserId(string facebookUserId)
+        {
+            return Context.User.SingleOrDefault(x => x.FacebookUserId == facebookUserId);
         }
     }
 }

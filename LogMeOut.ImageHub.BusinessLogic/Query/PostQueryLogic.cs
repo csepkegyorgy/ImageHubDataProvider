@@ -1,5 +1,6 @@
 ﻿namespace LogMeOut.ImageHub.BusinessLogic.Query
 {
+    using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
     using LogMeOut.ImageHub.Interfaces.Entity;
     using LogMeOut.ImageHub.Interfaces.Logic;
     using LogMeOut.ImageHub.Interfaces.Logic.TransportObjects;
@@ -7,8 +8,13 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class PostQueryLogic : IPostQueryLogic
+    public class PostQueryLogic : BaseLogic, IPostQueryLogic
     {
+        public PostQueryLogic(IBaseLogicDependency baseLogicDependency)
+            : base(baseLogicDependency)
+        {
+        }
+
         public PostsBatchResponse GetUserFeedBatch(PostsBatchRequest request)
         {
             List<PostEntity> allPosts = DemoDataGenerator.Posts.OrderByDescending(p => p.Date).ToList();
