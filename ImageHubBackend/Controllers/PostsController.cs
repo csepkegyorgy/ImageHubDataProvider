@@ -29,13 +29,14 @@
 
         [EnableCors("MyCorsPolicy")]
         [HttpGet("listposts")]
-        public IActionResult Get(Guid userId, int take, string type, Guid? lastPostId)
+        public IActionResult Get(Guid userId, Guid loggedInUserId, int take, string type, Guid? lastPostId)
         {
             PostsBatchRequest request = new PostsBatchRequest()
             {
                 UserId = userId,
                 Take = take,
-                LastPostId = lastPostId
+                LastPostId = lastPostId,
+                LoggedInUserId = loggedInUserId
             };
 
             PostsBatchResponse response = null;

@@ -4,6 +4,8 @@
 
     public class PostsBatchRequest
     {
+        public Guid LoggedInUserId { get; set; }
+
         public Guid UserId { get; set; }
 
         public int Take { get; set; }
