@@ -12,6 +12,7 @@
     using System.Linq;
     using LogMeOut.ImageHub.Interfaces.Entity;
     using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
+    using LogMeOut.ImageHub.Repository.Models;
 
     public class PostSubmitterLogic : BaseLogic, IPostSubmitterLogic
     {
@@ -22,25 +23,23 @@
 
         public SubmitPostResponse SubmitPost(SubmitPostRequest request)
         {
-            UserEntity user = DemoDataGenerator.Users.SingleOrDefault(u => u.UserId == request.UserId);
+            User user = Repository.UserRepository.GetUserById(request.UserId);// DemoDataGenerator.Users.SingleOrDefault(u => u.UserId == request.UserId);
 
-            PostEntity post = new PostEntity()
+            if (user != null)
             {
-                Date = DateTime.Now,
-                ImageId = request.ImageId,
-                HubtasticCount = 0,
-                IsHubbedByCurrentUser = false,
-                PostDescription = request.Description,
-                PosterId = user.UserId,
-                PosterName = user.Name,
-                PosterProfileIconId = user.ProfileImageId,
-                PostId = Guid.NewGuid()
-            };
-            DemoDataGenerator.AddPost(post);
+                Post post = new Post()
+                {
+                    Date = DateTime.UtcNow,
+                    ImageId = request.ImageId,
+                    PostDescription = request.Description,
+                    Poster = user,
+                    PostId = Guid.NewGuid()
+                };
+                Repository.PostRepository.AddPost(post);
+            }
 
             return new SubmitPostResponse()
             {
-
             };
         }
     }

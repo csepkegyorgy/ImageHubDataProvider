@@ -1,6 +1,7 @@
 ﻿namespace LogMeOut.ImageHub.Repository.Repositories
 {
     using LogMeOut.ImageHub.Interfaces.Repository;
+    using LogMeOut.ImageHub.Repository.Models;
 
     public class PostRepository : BaseRepository, IPostRepository
     {
@@ -10,6 +11,12 @@
             : base(imageHubRepository)
         {
             this.imageHubRepository = imageHubRepository;
+        }
+
+        public void AddPost(Post post)
+        {
+            Context.Post.Add(post);
+            Context.SaveChanges();
         }
     }
 }
