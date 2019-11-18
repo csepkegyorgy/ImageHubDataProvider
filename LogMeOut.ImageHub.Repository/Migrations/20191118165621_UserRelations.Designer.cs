@@ -4,14 +4,16 @@ using LogMeOut.ImageHub.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LogMeOut.ImageHub.Repository.Migrations
 {
     [DbContext(typeof(ImageHubDbContext))]
-    partial class ImageHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191118165621_UserRelations")]
+    partial class UserRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

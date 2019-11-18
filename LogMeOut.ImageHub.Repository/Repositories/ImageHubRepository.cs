@@ -1,7 +1,7 @@
 ﻿namespace LogMeOut.ImageHub.Repository.Repositories
 {
-    using LogMeOut.ImageHub.Interfaces.Repository;
     using LogMeOut.ImageHub.Repository.Data;
+    using LogMeOut.ImageHub.Repository.Interfaces;
     using System;
 
     public class ImageHubRepository : IImageHubRepository, IDisposable
@@ -16,11 +16,14 @@
 
         public ILikeRepository LikeRepository => LikeRepositoryLazy.Value;
 
+        public IUserRelationRepository UserRelationRepository => UserRelationRepositoryLazy.Value;
+
         private Lazy<ImageHubDbContext> DbContextLazy;
         private Lazy<IUserRepository> UserRepositoryLazy;
         private Lazy<IPostRepository> PostRepositoryLazy;
         private Lazy<ICommentRepository> CommentRepositoryLazy;
         private Lazy<ILikeRepository> LikeRepositoryLazy;
+        private Lazy<IUserRelationRepository> UserRelationRepositoryLazy;
 
         public ImageHubRepository()
         {
@@ -29,6 +32,7 @@
             PostRepositoryLazy = new Lazy<IPostRepository>(() => new PostRepository(this));
             CommentRepositoryLazy = new Lazy<ICommentRepository>(() => new CommentRepository(this));
             LikeRepositoryLazy = new Lazy<ILikeRepository>(() => new LikeRepository(this));
+            UserRelationRepositoryLazy = new Lazy<IUserRelationRepository>(() => new UserRelationRepository(this));
         }
 
         ~ImageHubRepository()

@@ -26,5 +26,9 @@
         public List<Post> Posts { get; set; } = new List<Post>();
 
         public List<Comment> Comments { get; set; } = new List<Comment>();
+
+        public List<UserRelation> Relations { get; set; } = new List<UserRelation>();
+
+        public List<UserRelation> RelationTargetings { get; set; } = new List<UserRelation>();
     }
 }

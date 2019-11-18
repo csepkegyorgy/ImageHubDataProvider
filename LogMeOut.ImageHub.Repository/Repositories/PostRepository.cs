@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using LogMeOut.ImageHub.Interfaces.Repository;
+    using LogMeOut.ImageHub.Repository.Interfaces;
     using LogMeOut.ImageHub.Repository.Models;
     using Microsoft.EntityFrameworkCore;
 

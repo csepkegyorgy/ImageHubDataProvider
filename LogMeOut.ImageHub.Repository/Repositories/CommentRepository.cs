@@ -1,6 +1,6 @@
 ﻿namespace LogMeOut.ImageHub.Repository.Repositories
 {
-    using LogMeOut.ImageHub.Interfaces.Repository;
+    using LogMeOut.ImageHub.Repository.Interfaces;
 
     public class CommentRepository : BaseRepository, ICommentRepository
     {

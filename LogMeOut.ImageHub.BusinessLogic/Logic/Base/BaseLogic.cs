@@ -1,7 +1,7 @@
 ﻿namespace LogMeOut.ImageHub.BusinessLogic.Logic.Base
 {
-    using LogMeOut.ImageHub.Interfaces.Repository;
     using LogMeOut.ImageHub.Interfaces.Util;
+    using LogMeOut.ImageHub.Repository.Interfaces;
     using System.IO;
     using System.Net;
 

@@ -1,4 +1,4 @@
-﻿namespace LogMeOut.ImageHub.Interfaces.Repository
+﻿namespace LogMeOut.ImageHub.Repository.Interfaces
 {
     using LogMeOut.ImageHub.Repository.Models;
     using System;

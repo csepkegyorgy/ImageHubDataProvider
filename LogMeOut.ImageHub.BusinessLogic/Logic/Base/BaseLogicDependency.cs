@@ -1,9 +1,9 @@
-﻿using LogMeOut.ImageHub.Interfaces;
-using LogMeOut.ImageHub.Interfaces.Repository;
-using LogMeOut.ImageHub.Interfaces.Util;
-
-namespace LogMeOut.ImageHub.BusinessLogic.Logic.Base
+﻿namespace LogMeOut.ImageHub.BusinessLogic.Logic.Base
 {
+    using LogMeOut.ImageHub.Interfaces;
+    using LogMeOut.ImageHub.Interfaces.Util;
+    using LogMeOut.ImageHub.Repository.Interfaces;
+
     public class BaseLogicDependency : IBaseLogicDependency
     {
         public IImageHubRepository Repository { get; }

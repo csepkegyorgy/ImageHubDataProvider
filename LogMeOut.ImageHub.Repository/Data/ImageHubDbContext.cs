@@ -13,6 +13,8 @@
 
         public DbSet<Like> Like { get; set; }
 
+        public DbSet<UserRelation> UserRelation { get; set; }
+
         public ImageHubDbContext()
         {
         }
@@ -53,6 +55,15 @@
                 .WithOne(x => x.Post)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.Relations)
+                .WithOne(x => x.User)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.RelationTargetings)
+                .WithOne(x => x.TargetUser)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

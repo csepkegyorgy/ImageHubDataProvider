@@ -8,7 +8,7 @@
     using LogMeOut.ImageHub.BusinessLogic.Logic.Base;
     using LogMeOut.ImageHub.BusinessLogic.Query;
     using LogMeOut.ImageHub.Interfaces.Logic;
-    using LogMeOut.ImageHub.Interfaces.Repository;
+    using LogMeOut.ImageHub.Repository.Interfaces;
     using LogMeOut.ImageHub.Repository.Repositories;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -72,6 +72,7 @@
             services.AddScoped<IPostQueryLogic, PostQueryLogic>();
             services.AddScoped<IAuthenticationLogic, AuthenticationLogic>();
             services.AddScoped<IPostSubmitterLogic, PostSubmitterLogic>();
+            services.AddScoped<IUserRelationHandlerLogic, UserRelationHandlerLogic>();
         }
     }
 }
