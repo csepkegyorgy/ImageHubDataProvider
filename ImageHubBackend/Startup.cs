@@ -73,6 +73,7 @@
             services.AddScoped<IAuthenticationLogic, AuthenticationLogic>();
             services.AddScoped<IPostSubmitterLogic, PostSubmitterLogic>();
             services.AddScoped<IUserRelationHandlerLogic, UserRelationHandlerLogic>();
+            services.AddScoped<IUserSearcherLogic, UserSearcherLogic>();
         }
     }
 }
