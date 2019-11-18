@@ -2,6 +2,7 @@
 {
     using LogMeOut.ImageHub.Interfaces.Logic;
     using LogMeOut.ImageHub.Interfaces.Logic.TransportObjects;
+    using Microsoft.AspNetCore.Cors;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -16,6 +17,7 @@
             this.UserSearcherLogic = userSearcherLogic;
         }
 
+        [EnableCors("MyCorsPolicy")]
         [HttpGet]
         public IActionResult Get(string partialUserName)
         {
