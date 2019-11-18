@@ -35,7 +35,7 @@
         public List<User> SearchByUserName(string partialUserName)
         {
             return Context.User
-                .Where(x => x.Name.Contains(partialUserName))
+                .Where(x => x.Name.ToLower().Contains(partialUserName))
                 .ToList();
         }
     }

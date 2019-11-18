@@ -21,7 +21,7 @@
         {
             if (!string.IsNullOrWhiteSpace(partialUserName))
             {
-                UserSearchResult logicResult = UserSearcherLogic.SearchUsersByPartialUserName(partialUserName);
+                UserSearchResult logicResult = UserSearcherLogic.SearchUsersByPartialUserName(partialUserName.ToLower());
                 return new JsonResult(logicResult);
             }
             else
