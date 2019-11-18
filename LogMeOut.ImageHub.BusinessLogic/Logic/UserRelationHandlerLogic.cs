@@ -118,7 +118,9 @@
 
             return new GetUserRelationForUserResponse()
             {
-                Relation = relation
+                Relation = relation,
+                Success = true,
+                UserId = requesterUserId
             };
         }
     }

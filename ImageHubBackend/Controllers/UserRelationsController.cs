@@ -18,26 +18,39 @@
         }
 
         [EnableCors("MyCorsPolicy")]
-        [HttpPost]
-        public IActionResult Post(Guid sourceUser, Guid targetUser, string type) // type = { followRequest, followAccept, followReject, unfollow }
+        [HttpGet]
+        public IActionResult Get(Guid userId, Guid targetUserId)
         {
-            if (sourceUser != null && targetUser != null && !string.IsNullOrWhiteSpace(type) && sourceUser != Guid.Empty && targetUser != Guid.Empty)
+            if (userId != null && targetUserId != null && userId != Guid.Empty && targetUserId != Guid.Empty)
+            {
+                var logicResponse = UserRelationHandlerLogic.GetUserRelationForUser(userId, targetUserId);
+                return new JsonResult(logicResponse);
+            }
+
+            return new JsonResult(new { success = "false", errors = new string[] { "Invalid parameters provided." } });
+        }
+
+        [EnableCors("MyCorsPolicy")]
+        [HttpPost]
+        public IActionResult Post([FromBody] Guid userId, [FromBody] Guid targetUserId, [FromBody] string type) // type = { followRequest, followAccept, followReject, unfollow }
+        {
+            if (userId != null && targetUserId != null && !string.IsNullOrWhiteSpace(type) && userId != Guid.Empty && targetUserId != Guid.Empty)
             {
                 if (type == "followRequest")
                 {
-                    UserRelationHandlerLogic.CreateUserFollowRequestRelation(sourceUser, targetUser);
+                    UserRelationHandlerLogic.CreateUserFollowRequestRelation(userId, targetUserId);
                 }
                 else if (type == "followAccept")
                 {
-                    UserRelationHandlerLogic.AcceptFollowRequestForUser(sourceUser, targetUser);
+                    UserRelationHandlerLogic.AcceptFollowRequestForUser(userId, targetUserId);
                 }
                 else if (type == "followReject")
                 {
-                    UserRelationHandlerLogic.RejectFollowRequestForUser(sourceUser, targetUser);
+                    UserRelationHandlerLogic.RejectFollowRequestForUser(userId, targetUserId);
                 }
                 else if (type == "unfollow")
                 {
-                    UserRelationHandlerLogic.UnfollowUsers(sourceUser, targetUser);
+                    UserRelationHandlerLogic.UnfollowUsers(userId, targetUserId);
                 }
                 else
                 {
