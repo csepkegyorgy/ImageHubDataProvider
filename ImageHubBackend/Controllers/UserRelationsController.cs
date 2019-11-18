@@ -32,7 +32,7 @@
 
         [EnableCors("MyCorsPolicy")]
         [HttpPost]
-        public IActionResult Post([FromBody] Guid userId, [FromBody] Guid targetUserId, [FromBody] string type) // type = { followRequest, followAccept, followReject, unfollow }
+        public IActionResult Post([FromForm] Guid userId, [FromForm] Guid targetUserId, [FromForm] string type) // type = { followRequest, followAccept, followReject, unfollow }
         {
             if (userId != null && targetUserId != null && !string.IsNullOrWhiteSpace(type) && userId != Guid.Empty && targetUserId != Guid.Empty)
             {
