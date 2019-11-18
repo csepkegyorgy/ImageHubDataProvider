@@ -21,10 +21,10 @@
         [Required]
         public string Email { get; set; }
 
-        public ICollection<Like> Likes { get; set; }
+        public List<Like> Likes { get; set; } = new List<Like>();
 
-        public ICollection<Post> Posts { get; set; }
+        public List<Post> Posts { get; set; } = new List<Post>();
 
-        public ICollection<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
