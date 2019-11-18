@@ -9,5 +9,6 @@
         void AddPost(Post post);
 
         List<Post> ListPostsByUserId(Guid userId);
+        List<Post> ListFeedPostsForUser(Guid userId, Guid loggedInUserId, int take, Guid? lastPostId);
     }
 }
