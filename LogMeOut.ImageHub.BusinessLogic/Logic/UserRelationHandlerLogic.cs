@@ -50,8 +50,8 @@
                 {
                     Id = Guid.NewGuid(),
                     RelationType = UserRelationType.FollowRequestIncoming,
-                    TargetUser = targetUser,
-                    User = requesterUser
+                    TargetUser = requesterUser,
+                    User = targetUser
                 };
 
                 Repository.UserRelationRepository.AddUserRelation(requesterUserRelation);
@@ -110,7 +110,7 @@
                 {
                     relation = "incomingpending";
                 }
-                else if (userRelation.RelationType == UserRelationType.FollowRequestIncoming)
+                else if (userRelation.RelationType == UserRelationType.FollowRequestOutgoing)
                 {
                     relation = "outgoingpending";
                 }
