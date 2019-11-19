@@ -26,6 +26,7 @@
         public List<Post> ListFeedPostsForUser(Guid userId, Guid loggedInUserId, int take, Guid? lastPostId)
         {
             List<Guid> userPostScope = Context.UserRelation
+                 .Where(x => x.RelationType == UserRelationType.Follow)
                  .Where(x => x.User.Id == userId)
                  .Select(x => x.TargetUser.Id)
                  .ToList();
