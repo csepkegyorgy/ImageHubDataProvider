@@ -38,7 +38,7 @@
             services.AddCors(options =>
             {
                 options.AddPolicy("MyCorsPolicy", builder => builder
-                    .WithOrigins("http://localhost:3000", "http://192.168.0.100:3000")
+                    .WithOrigins("http://localhost:3000", "http://192.168.0.100:3000", "https://imagehub-uat.azurewebsites.net")
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
